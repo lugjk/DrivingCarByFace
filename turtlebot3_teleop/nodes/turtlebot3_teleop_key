@@ -71,7 +71,6 @@ def getKey():
   camera_id = 0
   #capture the image
   cap = cv2.VideoCapture(camera_id)
-  while True:
       #read the image
       ret, frame = cap.read()
       #convert to gray
@@ -98,14 +97,15 @@ def getKey():
               # BACKWARD
               if (y1 > center[0]):
                   key="x"
+                  else key = "s"
           if (y1 < center[1] and y2 > center[1]):
               # LEFT
               if (x2 < center[0]):
-                 key="a"
+                 key0="a"
               # RIGHT
               if (x1 > center[0]):
-                  key="d"
-
+                 key0="d"
+                else key0="s"
           #draw rectangle
           cv2.rectangle(img = frame, pt1 = (x1, y1), pt2 = (x2, y2),
                       color = (0, 255, 0), thickness = 3)
@@ -118,8 +118,7 @@ def getKey():
           break
 
   cap.release()
-  cap.destroyAllWindows()
-  return key;
+  return
 def vels(target_linear_vel, target_angular_vel):
     return "currently:\tlinear vel %s\t angular vel %s " % (target_linear_vel,target_angular_vel)
 
@@ -181,31 +180,18 @@ if __name__=="__main__":
     try:
         print(msg)
         while(1):
-            key = getKey()
+             getKey(key,key0)
             if key == 'w' :
                 target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
-                status = status + 1
-                print(vels(target_linear_vel,target_angular_vel))
             elif key == 'x' :
                 target_linear_vel = checkLinearLimitVelocity(-target_linear_vel - LIN_VEL_STEP_SIZE)
-                status = status + 1
-                print(vels(target_linear_vel,target_angular_vel))
-            elif key == 'a' :
+            if key0 == 'a' :
                 target_angular_vel = checkAngularLimitVelocity(target_angular_vel + ANG_VEL_STEP_SIZE)
-                status = status + 1
-                print(vels(target_linear_vel,target_angular_vel))
-            elif key == 'd' :
+            elif key0 == 'd' :
                 target_angular_vel = checkAngularLimitVelocity(target_angular_vel - ANG_VEL_STEP_SIZE)
-                status = status + 1
-                print(vels(target_linear_vel,target_angular_vel))
-            elif key == ' ' or key == 's' :
-                target_linear_vel   = 0.0
-                control_linear_vel  = 0.0
-                target_angular_vel  = 0.0
-                control_angular_vel = 0.0
-                print(vels(target_linear_vel, target_angular_vel))
-            else:
-                if (key == '\x03'):
+               
+            status = status + 1
+            print(vels(target_linear_vel,target_angular_vel))
                     break
 
             if status == 20 :
