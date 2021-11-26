@@ -173,7 +173,7 @@ if __name__=="__main__":
     turtlebot3_model = rospy.get_param("model", "burger")
 
     status = 0
-    target_linear_vel   = 0.0
+    target_linear_vel   = 1.0
     target_angular_vel  = 0.0
     control_linear_vel  = 0.0
     control_angular_vel = 0.0
