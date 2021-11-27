@@ -206,7 +206,10 @@ if __name__=="__main__":
              if key==key0
                 stop=stop+1
               else stop=0
-            
+            if stop==5
+              cap.release()
+              cap.destroyAllWindows()
+              break
             status = status + 1
             print(vels(target_linear_vel,target_angular_vel))
                     break
