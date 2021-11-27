@@ -191,11 +191,13 @@ if __name__=="__main__":
     try:
         print(msg)
         while(1):
+             target_linear_vel   = 1.0
              getKey(key,key0)
             if key == 'w' :
                 target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
             elif key == 'x' :
                 target_linear_vel = checkLinearLimitVelocity(-target_linear_vel - LIN_VEL_STEP_SIZE)
+                else target_linear_vel=0
             if key0 == 'a' :
                 target_angular_vel = checkAngularLimitVelocity(target_angular_vel + ANG_VEL_STEP_SIZE)
             elif key0 == 'd' :
