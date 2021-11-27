@@ -107,10 +107,10 @@ cap = cv2.VideoCapture(camera_id)
                 key="x"
             else
                 key="s"
-            
+            #left
             if (c[1] < w1):
                 key0="a"
-            # RIGHT
+            # right
             elif (c[1] > w2):
                 key0="d"
             else
