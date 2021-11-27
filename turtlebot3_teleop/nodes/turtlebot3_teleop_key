@@ -40,7 +40,7 @@ else:
 BURGER_MAX_LIN_VEL = 0.22
 BURGER_MAX_ANG_VEL = 2.84
 
-WAFFLE_MAX_LIN_VEL = 0.26
+WAFFLE_MAX_LIN_VEL = 90
 WAFFLE_MAX_ANG_VEL = 1.82
 
 LIN_VEL_STEP_SIZE = 0.00
@@ -101,17 +101,17 @@ cap = cv2.VideoCapture(camera_id)
         c=(int ((x1[0]+x2[0])/2), int ((y1[1]+y2[1])/2))
         
         # forward and back
-            if (c[0] <h1 ):
+            if (c[1] <h1 ):
                 key="w"
-            elif (c[0] > h2):
+            elif (c[1] > h2):
                 key="x"
             else
                 key="s"
             #left
-            if (c[1] < w1):
+            if (c[0] < w1):
                 key0="a"
             # right
-            elif (c[1] > w2):
+            elif (c[0] > w2):
                 key0="d"
             else
                 key0="s"
@@ -187,7 +187,8 @@ if __name__=="__main__":
     target_angular_vel  = 0.0
     control_linear_vel  = 0.0
     control_angular_vel = 0.0
-
+  
+    
     try:
         print(msg)
         while(1):
