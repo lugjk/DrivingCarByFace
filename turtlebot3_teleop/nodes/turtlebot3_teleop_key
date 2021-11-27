@@ -102,19 +102,19 @@ cap = cv2.VideoCapture(camera_id)
         
         # forward and back
             if (c[1] <h1 ):
-                key="w"
+                key='w'
             elif (c[1] > h2):
-                key="x"
+                key='x'
             else
-                key="s"
+                key='s'
             #left
             if (c[0] < w1):
-                key0="a"
+                key0='a'
             # right
             elif (c[0] > w2):
-                key0="d"
+                key0='d'
             else
-                key0="s"
+                key0='s'
 
         #draw rectangle
         cv2.rectangle(img = frame, pt1 = (x1, y1), pt2 = (x2, y2),
@@ -188,7 +188,7 @@ if __name__=="__main__":
     control_linear_vel  = 0.0
     control_angular_vel = 0.0
   
-    
+    stop=0
     try:
         print(msg)
         while(1):
@@ -203,7 +203,10 @@ if __name__=="__main__":
                 target_angular_vel = checkAngularLimitVelocity(target_angular_vel + ANG_VEL_STEP_SIZE)
             elif key0 == 'd' :
                 target_angular_vel = checkAngularLimitVelocity(target_angular_vel - ANG_VEL_STEP_SIZE)
-               
+             if key==key0
+                stop=stop+1
+              else stop=0
+            
             status = status + 1
             print(vels(target_linear_vel,target_angular_vel))
                     break
