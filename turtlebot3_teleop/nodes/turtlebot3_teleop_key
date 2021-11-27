@@ -66,7 +66,7 @@ e = """
 Communications Failed
 """
 
-def getKey(key,key0):
+def getKey():
   #choses camera
 camera_id = 0
 #capture the image
@@ -129,7 +129,7 @@ cap = cv2.VideoCapture(camera_id)
    
 
 cap.release()
-  return
+  return key,key0
 def vels(target_linear_vel, target_angular_vel):
     return "currently:\tlinear vel %s\t angular vel %s " % (target_linear_vel,target_angular_vel)
 
@@ -192,7 +192,7 @@ if __name__=="__main__":
         print(msg)
         while(1):
              target_linear_vel   = 1.0
-             getKey(key,key0)
+             key,key0=getKey()
             if key == 'w' :
                 target_linear_vel = checkLinearLimitVelocity(target_linear_vel + LIN_VEL_STEP_SIZE)
             elif key == 'x' :
